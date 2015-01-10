@@ -30,6 +30,12 @@ A EnzDes scorefile parser.
 
 + Get lowest XX scoring poses
 
+### `pose.py`
+
+By Alex Carlin
+
+A minimal PDB parser. 
+
 
 ## Data analysis 
 

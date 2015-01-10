@@ -1,5 +1,3 @@
-__author__ = 'stevebertolani'
-
 bb_atoms=['N','CA','C','O']
 bb_polar=['N','O']
 bb_apolar=['CA','C']
