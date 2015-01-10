@@ -1,5 +1,40 @@
-Siegel Lab core libraries for enzyme design with Rosetta
-========================================================
+## Get started on Mac OS X
+
+Install [Homebrew](). 
+
+Install Python3 with 
+
+```bash 
+brew install python3 
+```
+
+This will brew a Python install and symlink it into `/usr/local/bin/`. If
+you don't already `/usr/local/bin/` in your PATH, add it now. 
+
+If you don't know what your PATH is or how to change it, it may be difficult
+to follow the rest of this guide. Consult Matt Might's blog for getting
+started with Unix. 
+
+To install the required Python packages, use 
+
+```bash
+pip3 install numpy scipy pandas 
+pip install numpy scipy pandas
+```
+
+*Note* you really must install for both Python 2 and Python 3. 
+
+Clone Rosetta [rosetta_clone_tools] into `~/Applications`. It is 
+recommended that you install into `~/Applications` (your user
+Applications folder) rather than `/Applications` (the system 
+Applications folder). 
+
+Good things to add to your `.bashrc`:
+
+```bash
+export PATH=$PATH:/usr/local/bin:~/Applications/Rosetta/main/source/bin
+export ROSETTA3_DB=~/Applications/Rosetta/main/database
+```
 
 ## Rosetta 
 
