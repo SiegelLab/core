@@ -34,8 +34,12 @@ A EnzDes scorefile parser.
 
 By Alex Carlin
 
-A minimal PDB parser. 
+A minimal PDB parser. Usage
 
+```python
+from pose import PDB
+mypdb = PDB('tests/1sny.pdb')
+```
 
 ## Data analysis 
 
