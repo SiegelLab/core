@@ -1,6 +1,19 @@
 Siegel Lab core libraries for enzyme design with Rosetta
 ========================================================
 
+## Rosetta 
+
+### `default.enzdes.flags`
+
+By Justin Siegel 
+
+A default flags file for use with RosettaScripts. 
+
+### `submit.bash` 
+
+High-powered submission script for use on Epiphany. 
+
+
 ## Parsers 
 
 ### `pdb.py`
@@ -30,6 +43,11 @@ Fits assay data to Michaelis-Menten models.
   with substrate inhibition 
 
 + Generates diagnostic plots 
+
+### `bfactor.py`
+
+Color PBDs in PyMOL, useful for looking at the effects of a lot of
+mutations. 
 
 
 ## APIs

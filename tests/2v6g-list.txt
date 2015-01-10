@@ -1,0 +1,12 @@
+met125glu+phe128glu+tyr131gln+phe318ala+val321asn
+phe128glu
+phe128his
+met125glu+pro127ala+phe128glu+tyr131gln+asn180pro+val321ala 
+lys122glu+met125arg+phe128pro+tyr131glu+asn180pro+ile315trp+phe318val+val321his 
+tyr131glu+ile315trp+phe318val+val321his
+ile315trp+phe318val+val321his
+phe318val+val321his
+phe318ile+val321his
+phe318asn+val321his
+phe318his+val321his
+phe128his+phe318his+val321his
