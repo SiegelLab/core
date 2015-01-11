@@ -77,9 +77,9 @@ A EnzDes scorefile parser.
 
      data = read_csv("score.sc",delim_whitespace=True,header=0) # Note, the header may not be the first line
      
-     sf2 = ScoreFile(data)
+     sf = ScoreFile(data)
      
-     lowest_pdb = sf2.return_lowest_energy_tag(tag="score")
+     lowest_pdb = sf.return_lowest_energy_tag(tag="score") # You can put in any valid scorefile tag from the header
      
      print "The lowest energy pdb file is %s" %lowest_pdb
 
