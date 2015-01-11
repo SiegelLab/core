@@ -65,7 +65,7 @@ A EnzDes scorefile parser.
 
 + Get lowest XX scoring poses
 
-##  Example Usage:
+####  Example Usage:
 
      from scorefile_reader.Score import ScoreFile
      
