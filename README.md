@@ -2,11 +2,14 @@
 
 Install [Homebrew](). 
 
-Install Python3 with 
+Install Python3* with 
 
 ```bash 
 brew install python3 
 ```
+*Note: An alternative way would be to install Anaconda's package of python which installs "most" requirements
+
+**Note: Although some people (Alex) prefer python3, others (Steve & Morgan) understand the widespread use of Python2. Therefore, modules written by these respective authors will most likely only work for his/her preferred version. Cheers!
 
 This will brew a Python install and symlink it into `/usr/local/bin/`. If
 you don't already `/usr/local/bin/` in your PATH, add it now. 
