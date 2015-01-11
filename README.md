@@ -70,7 +70,7 @@ A EnzDes scorefile parser.
 
 ####  Example Usage:
 
-     from scorefile_reader.Score import ScoreFile
+     from score import ScoreFile
      
      from pandas import read_csv
 
