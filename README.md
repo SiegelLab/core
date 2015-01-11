@@ -65,6 +65,22 @@ A EnzDes scorefile parser.
 
 + Get lowest XX scoring poses
 
+##  Example Usage:
+
+     from scorefile_reader.Score import ScoreFile
+     
+     from pandas import read_csv
+
+
+     data = read_csv("score.sc",delim_whitespace=True,header=0) # Note, the header may not be the first line
+     
+     sf2 = ScoreFile(data)
+     
+     lowest_pdb = sf2.return_lowest_energy_tag(tag="score")
+     
+     print "The lowest energy pdb file is %s" %lowest_pdb
+
+
 ### `pose.py`
 
 By Alex Carlin
