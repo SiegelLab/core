@@ -1,19 +1,23 @@
 # Get started on Mac OS X
 
+## Homebrew and Python 
+
 Install [Homebrew](). 
 
-Install Python3* with 
+Install Python 3 with 
 
 ```bash 
 brew install python3 
 ```
 
+(you already have a copy of Python 2.)
+
 This will brew a Python install and symlink it into `/usr/local/bin/`. If
 you don't already `/usr/local/bin/` in your PATH, add it now. 
 
 If you don't know what your PATH is or how to change it, it may be difficult
-to follow the rest of this guide. Consult Matt Might's blog for getting
-started with Unix. 
+to follow the rest of this guide. Consult Matt Might's blog for [getting
+started with Unix](http://matt.might.net/articles/basic-unix/). 
 
 To install the required Python packages, use 
 
@@ -23,22 +27,6 @@ pip install numpy scipy pandas
 ```
 
 *Note* you really **must** install for both Python 2 and Python 3. 
-
-Clone Rosetta [rosetta_clone_tools] into `~/Applications`. It is 
-recommended that you install into `~/Applications` (your user
-Applications folder) rather than `/Applications` (the system 
-Applications folder). 
-
-Good things to add to your `.bashrc`:
-
-```bash
-export PATH=$PATH:/usr/local/bin:~/Applications/Rosetta/main/source/bin
-export ROSETTA3_DB=~/Applications/Rosetta/main/database
-```
-
-## Use the Siegel Lab copy of Rosetta on Epiphany 
-
-It is located at `/share/archive2/siegellab/rosetta/`. 
 
 ## Clone and build Rosetta locally 
 
@@ -55,7 +43,19 @@ cd Rosetta/main/source
 ./scons.py -j6 cxx=clang mode=release bin 
 ```
 
-to compile using Clang and in release mode (much much faster than debug mode).
+to compile using Clang and in release mode (much much faster than debug mode). It is recommended that you install into `~/Applications` (your user Applications folder) rather than `/Applications` (the system Applications folder). 
+
+## Good things to add to your `.bashrc`:
+
+```bash
+export PATH=$PATH:/usr/local/bin:~/Applications/Rosetta/main/source/bin
+export ROSETTA3_DB=~/Applications/Rosetta/main/database
+```
+
+## Use the Siegel Lab copy of Rosetta on Epiphany 
+
+It is located at `/share/archive2/siegellab/rosetta/`. 
+
 
 # Scripts in this repo
 
