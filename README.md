@@ -1,4 +1,4 @@
-## Get started on Mac OS X
+# Get started on Mac OS X
 
 Install [Homebrew](). 
 
@@ -7,9 +7,6 @@ Install Python3* with
 ```bash 
 brew install python3 
 ```
-*Note: An alternative way would be to install Anaconda's package of python which installs "most" requirements
-
-**Note: Although some people (Alex) prefer python3, others (Steve & Morgan) work in Python2, given it's widespread use. Therefore, modules written by these respective authors will most likely only work for his/her preferred version. Cheers!
 
 This will brew a Python install and symlink it into `/usr/local/bin/`. If
 you don't already `/usr/local/bin/` in your PATH, add it now. 
@@ -25,7 +22,7 @@ pip3 install numpy scipy pandas
 pip install numpy scipy pandas
 ```
 
-*Note* you really must install for both Python 2 and Python 3. 
+*Note* you really **must** install for both Python 2 and Python 3. 
 
 Clone Rosetta [rosetta_clone_tools] into `~/Applications`. It is 
 recommended that you install into `~/Applications` (your user
@@ -38,6 +35,29 @@ Good things to add to your `.bashrc`:
 export PATH=$PATH:/usr/local/bin:~/Applications/Rosetta/main/source/bin
 export ROSETTA3_DB=~/Applications/Rosetta/main/database
 ```
+
+## Use the Siegel Lab copy of Rosetta on Epiphany 
+
+It is located at `/share/archive2/siegellab/rosetta/`. 
+
+## Clone and build Rosetta locally 
+
+Change into the directory you want to install Rosetta into (recommendation: use `~/Applications`) and run
+
+```bash
+curl -Ok https://raw.githubusercontent.com/RosettaCommons/rosetta_clone_tools/master/get_rosetta.sh && bash get_rosetta.sh main
+```
+
+to get the main source repo (add `tools` at the end if you want the tools). Then, 
+
+```bash
+cd Rosetta/main/source
+./scons.py -j6 cxx=clang mode=release bin 
+```
+
+to compile using Clang and in release mode (much much faster than debug mode).
+
+# Scripts in this repo
 
 ## Rosetta 
 
