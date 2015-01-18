@@ -17,7 +17,7 @@ mybasepath = curdir
 for name in fh:
 
 
-    print name
+    print(name)
     #change into directory that has the score.sc file
 
     name_path = mybasepath+"/"+name
@@ -26,12 +26,12 @@ for name in fh:
     data = read_csv("score.sc",delim_whitespace=True,header=0) # Note, the header may not be the first line
     sf2 = ScoreFile(data)
     lowest_pdb = sf2.return_lowest_energy_tag(tag="score")
-    print "The lowest energy pdb file is %s" %lowest_pdb
+    print("The lowest energy pdb file is %s" %lowest_pdb)
 
     cutoff = 8
     activestruct = activesitestructure_from_file( lowest_pdb , cutoff, name)
     ctct = ContactCounter( activestruct )
-    print ctct.print_contact_results()
+    print(ctct.print_contact_results())
     #df_contacts.append( ctct.series )
     #print df_contacts
 

@@ -47,7 +47,7 @@ class Residue:
         elif atname.strip() in self.stripped_atmap:
             return self.stripped_atmap[atname.strip()]
         else:
-            print "Error in looking up atom", atname, "in residue", self.resname
+            print("Error in looking up atom", atname, "in residue", self.resname)
             sys.exit(1)
 
     def has_atom(self, atname):
@@ -83,10 +83,10 @@ class Chain:
         copyres = copy.copy(newresidue)
         copyres.claim(self)
         if newresidue.resstring not in self.resmap:
-            print "Could not replace residue", newresidue.resstring
-            print len(self.resmap)
+            print("Could not replace residue", newresidue.resstring)
+            print(len(self.resmap))
         assert ( newresidue.resstring in self.resmap )
-        for i in xrange(len(self.residues)):
+        for i in range(len(self.residues)):
             if self.residues[i].resstring == newresidue.resstring:
                 self.residues[i] = copyres
         self.resmap[newresidue.resstring] = copyres
@@ -273,31 +273,31 @@ class PDBStructure:
     def take_a_selfie(self):
         for chain in self.chains:
             for res in chain.residues:
-                print res.resstring
+                print(res.resstring)
 
     def take_a_clean_selfie(self):
         for atom in self.cleanprotein:
-            print atom.name
+            print(atom.name)
         for atom in self.cleanhetatm:
-            print atom.name
+            print(atom.name)
 
     def remove_water(self): ## need to remove the residues, not make a new list
         numwaterremoved = 0
         self.remove_these_HOHS_res =[]
         for chain in self.chains:
             for res in chain.residues:
-                    print res.resstring
+                    print(res.resstring)
                     if res.resname == "HOH":
-                        print "is HOH"
+                        print("is HOH")
                         self.remove_these_HOHS_res.append(res)
                         numwaterremoved +=1
 
-        print "Removed a total of %s waters " %numwaterremoved
+        print("Removed a total of %s waters " %numwaterremoved)
 
 
     def remove_hydrogens(self):
         from re import findall
-        print "Removing Hydrogens"
+        print("Removing Hydrogens")
         self.remove_these_hydrogens_atom = []
         for chain in self.chains:
             for res in chain.residues:
@@ -305,13 +305,13 @@ class PDBStructure:
                     #print str(atom.name)
                     regex = findall('[^A-Z][H][A-Z0-9]?[ ]?[0-9]?',atom.name)
                     if regex != []:
-                        print "Found a Hydrogen, removing %s " % str(atom.name)
+                        print("Found a Hydrogen, removing %s " % str(atom.name))
                         self.remove_these_hydrogens_atom.append(atom)
 
 
     def split_hetatm_protein(self):
 
-        print "Splitting structure into hetatm and protein "
+        print("Splitting structure into hetatm and protein ")
         self.cleanhetatm=[]
         self.cleanprotein=[]
 
@@ -327,7 +327,7 @@ class PDBStructure:
                                 else:
                                     self.cleanprotein.append(atom)
 
-        print "Found %s hetatms in structure " % len(self.cleanhetatm)
+        print("Found %s hetatms in structure " % len(self.cleanhetatm))
 
     def remove_other_conformations(self):
         self.remove_these_confs_atom = []
@@ -337,7 +337,7 @@ class PDBStructure:
 
                     if (atom.conformer !=" "):
                         if (atom.conformer !="A"):
-                            print "Removing alternate conformations atom name %s conf %s" %(atom.name, atom.conformer)
+                            print("Removing alternate conformations atom name %s conf %s" %(atom.name, atom.conformer))
                             self.remove_these_confs_atom.append(atom)
 
 
@@ -348,12 +348,12 @@ class PDBStructure:
         for atom in self.cleanprotein:
             for ligand_atom in self.cleanhetatm:
                 dist = sqrt(atom.xyz.distance_squared(ligand_atom.xyz))
-                print "Distance is %s" %dist
+                print("Distance is %s" %dist)
                 if (dist < cutoff ):
-                    print "This is less than the cutoff (%s) " %cutoff
+                    print("This is less than the cutoff (%s) " %cutoff)
                     self.activesiteproteinatoms.append(atom)
 
-        print "Found %s atoms in the active site with cutoff = %s" %(len(self.activesiteproteinatoms),cutoff)
+        print("Found %s atoms in the active site with cutoff = %s" %(len(self.activesiteproteinatoms),cutoff))
 
 def nresidues(pdb):
     count = 0
