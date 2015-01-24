@@ -23,3 +23,15 @@ def ONE_to_three(residue_as_1_letter_code):
 
 def ONE_to_THREE(residue_as_1_letter_code):
   return dict( zip(aa1_upper, aa3_upper) )[residue_as_1_letter_code]
+
+def three_to_one(aa):
+  return dict(zip(aa3_lower, aa1_lower))[aa]
+
+def three_to_ONE(aa):
+  return dict(zip(aa3_lower, aa1_upper))[aa]
+
+def THREE_to_one(aa):
+  return dict(zip(aa3_upper, aa1_lower))[aa]
+
+def THREE_to_ONE(aa):
+  return dict(zip(aa3_upper, aa1_upper))[aa]

@@ -1,9 +1,10 @@
 from re import match
-#from db import radii 
+#from db.atom import radii 
 
 class Atom:
   def __init__(self, l):
-    # PDB 
+    '''Create atom from line in PDB'''
+
     self.record = l[0:6].strip()
     self.number = int(l[6:11])
     self.atomname = l[12:16].strip()
@@ -19,10 +20,8 @@ class Atom:
     self.element = l[76:78].strip()
     self.charge = float(l[79:81]) if l[70:91] == True else 0
 
-    if self.atomname in ['N', 'CA', 'C', 'O']:
-      self.bb = 'Oh yeah'
-    else: 
-      self.bb = False
+  # instance variables  
+  self.bb = 'Oh yeah' if self.atomname in ['N', 'CA', 'C', 'O'] else 'Nope'
     
     # energy 
     #self.radius = radii[self.element]
