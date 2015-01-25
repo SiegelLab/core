@@ -13,36 +13,48 @@ A default flags file for use with RosettaScripts.
 High-powered submission script for use on Epiphany. 
 
 
-## Parsers 
+## Scripts for working with PDB files 
 
-### `pdb.py`
+### `pdb_parser.py`
 
 By Andrew Leaver-Fay, Morgan Nance, and Steve Bertolani 
 
 A full-featured PDB parser. 
 
+
+## For working with scorefiles 
+
 ### `scores.py`
 
 By Morgan Nance and Steve Bertolani
 
-A EnzDes scorefile parser. 
+```python
+# example usage 
+from score import ScoreFile
+from pandas import read_csv
 
-+ Get lowest XX scoring poses
-
-####  Example Usage:
-
-     from score import ScoreFile
+data = read_csv("score.sc",delim_whitespace=True,header=0) # Note, the header may not be the first line
      
-     from pandas import read_csv
+sf = ScoreFile(data)
+lowest_pdb = sf.return_lowest_energy_tag(tag="score") # You can put in any valid scorefile tag from the header
+     
+print "The lowest energy pdb file is %s" %lowest_pdb
+```
 
 
-     data = read_csv("score.sc",delim_whitespace=True,header=0) # Note, the header may not be the first line
-     
-     sf = ScoreFile(data)
-     
-     lowest_pdb = sf.return_lowest_energy_tag(tag="score") # You can put in any valid scorefile tag from the header
-     
-     print "The lowest energy pdb file is %s" %lowest_pdb
+### `enzdes_score.py`
+
+By Alex Carlin
+
+A module for reading and filtering EnzDes-style scorefiles. 
+
+```python
+# example use
+from core import enzdes_score
+
+sf = enzdes_score.read_scorefile('tests/enzdes.sc')
+lowest10 = lowest_by_percent(sf, percent=0.33) 
+```
 
 
 ### `pose.py`
@@ -52,8 +64,8 @@ By Alex Carlin
 A minimal PDB parser. Usage
 
 ```python
-from pose import PDB
-mypdb = PDB('tests/1sny.pdb')
+from core import pose
+mypdb = pose.from_pdb('tests/1sny.pdb')
 ```
 
 ## Data analysis 
@@ -67,7 +79,7 @@ Fits assay data to Michaelis-Menten models.
 + Generates statistics for linear, Michaelis-Menten, and Michaelis-Menten 
   with substrate inhibition 
 
-+ Generates diagnostic plots 
++ Generates diagnostic plots  
 
 ### `bfactor.py`
 
