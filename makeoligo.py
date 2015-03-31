@@ -1,4 +1,4 @@
-from db.amino_acid import aa, cod, one, rc
+from core.db.amino_acid import * 
 from sys import argv
 import re
 
@@ -6,18 +6,23 @@ if len(argv) < 3:
   print("usage: python3 makeoligo.py <fasta> <list>")
   exit()
 
+# io
+# get nucleotide sequence as a string
 with open(argv[1], 'r') as f:
   gene = f.readlines()
   gene = gene[1:] if re.match(r'>', gene[0]) else gene
   gene = re.sub( r'[\n \d+]', '', ''.join(gene).lower() )
+  # make this for gene in genes :P
 
+# get a list of mutations to make 
 with open(argv[2], 'r') as l:
   lis = l.read().lower()
   if not lis[1].isdigit():
-    lis = re.sub(r'[A-Za-z]{3}', one, lis).split()
+    lis = re.sub(r'[a-z]{3}', three_to_one, lis).split()
   else: 
     lis = lis.split()
 
+# procedure 
 for line in lis:
   seq = [gene[i:i+3] for i in range(0, len(gene), 3)]
   l = []
@@ -25,7 +30,7 @@ for line in lis:
   for switch in switches:
     old, *i, new = switch
     i = int(''.join(i))
-    ori = aa[seq[i-1]]
+    ori = aa_from_codon( seq[i-1] )
     if old is ori:
       seq[i-1] = cod[new].upper()
       l += [i]

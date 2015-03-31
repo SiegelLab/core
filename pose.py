@@ -18,17 +18,10 @@ class Atom:
     self.bfactor = float(l[60:66])
     self.seg_id = l[72:76].strip()
     self.element = l[76:78].strip()
-    self.charge = float(l[79:81]) if l[70:91] == True else 0
-
-  # instance variables  
-  self.bb = 'Oh yeah' if self.atomname in ['N', 'CA', 'C', 'O'] else 'Nope'
-    
-    # energy 
-    #self.radius = radii[self.element]
+    self.charge = float(l[79:81]) if l[70:91] == True else ''
 
   def __repr__(self):
     '''Writes valid PDB according to specification'''
-
     return '%-6s' % self.record + \
       '%5d ' % self.number + \
       '%-4s' % self.atomname + \
@@ -41,7 +34,7 @@ class Atom:
       '%6.2f' % self.occupancy + \
       '%6.2f      ' % self.bfactor + \
       '%-4s' % self.seg_id + \
-      '%-4s' % self.element + \
+      '%2s' % self.element + \
       '%2s' % self.charge
   
   # Measurement and other nondestructive methods  
@@ -62,18 +55,18 @@ class Atom:
 class PDB:
   'Represents a single PDB, use like 1sny = PDB("1sny.pdb")'
   def __init__(self, fn): 
-    fn = open(fn).readlines()
-    
-    self.remark = [ l for l in fn if match(r'^REMA', l) ]
-    self.atom = [ Atom(l) for l in fn if match(r'^ATOM', l) ]
-    self.hetatm = [ Atom(l) for l in fn if match(r'^HETA', l) ] 
-    self.allatm = self.atom + self.hetatm
 
-    # maybe have a bunch of ways to subset?
-    self.c_alpha = [ Atom(l) for l in fn if match(r'^ATO.+CA', l) ]
+    if type( fn ) is not list:
+    # if for example you want to start from a file handle
+      fn = open(fn).readlines()
 
-    self.contact_map = [ [ 1 if c.dist(i) < 10 \
-      else 0 for c in self.c_alpha ] for i in self.c_alpha ]
+    # otherwise assume it's a list of lines 
+    self.remarks_ = [ l for l in fn if match(r'^REMA', l) ]
+    self.atoms_ = [ Atom(l) for l in fn if match(r'^ATOM', l) ]
+    self.hetatms_ = [ Atom(l) for l in fn if match(r'^HETA', l) ] 
+
+    #self.contact_map = [ [ 1 if c.dist(i) < 10 else 0 for c in self.c_alpha ] for i in self.c_alpha ]
 
   def __repr__(self):
-    return '%s' % '\n'.join([ str(a) for a in self.remark + self.allatm ])
+    return '\n'.join([ str(a) for a in self.remarks_ + self.atoms_ + self.hetatms_ ])
+
